@@ -1,8 +1,8 @@
 <?php
 
 config('db-server', 'localhost');
-config('db-username', 'root');
-config('db-password', '');
+config('db-username', 'symfony');
+config('db-password', 'symfony');
 config('db-name', 'wishstore');
 
 ?>
