@@ -20,13 +20,10 @@
     </head>
     <body>
 
-        <a href="#" data-role="button" data-mini="true" data-inline="true" data-icon="search" data-iconpos="right" data-theme="a" id="share_location_button">Link button</a> 
-
-
         <div data-role="controlgroup">
-            <a href="login.php" data-role="button">Login</a>
-            <a href="#" data-role="button">Checkin</a>
-            <a href="#" data-role="button">Profile</a>
+            <a href="login.php" data-role="button" data-icon="search" data-iconpos="right" data-theme="a" id="login">Login</a>
+            <a href="#" data-role="button" data-icon="search" data-iconpos="right" data-theme="a" id="share_location_button">Share Your Location</a>
+            <a href="#" data-role="button" data-icon="search" data-iconpos="right" data-theme="a" id="maps">Share Your Location</a>
         </div>
 
         <!--      
@@ -70,8 +67,6 @@
 
             /*************************************************************************************/
 
-
-
             $("#share_location_button").on("click", function() {
                 if (navigator.geolocation)
                 {
@@ -80,8 +75,13 @@
                 else {
                     alert("Geolocation is not supported by this browser.");
                 }
-            })
+            });
 
+            /*************************************************************************************/
+
+            $("#maps").on("click", function() {
+                window.location.href="./map.php";
+            });
         </script>
     </body>
 </html>
