@@ -1,19 +1,58 @@
-<?php
-	$connection = mysql_connect("localhost", "root", "");
-	if(!$connection) {
-		die("Database connection failed " . mysql_error());
-	}
-		
-	$db_select = mysql_select_db("wishstore", $connection);
-	if(!$db_select) {
-		die("Database selection failed " . mysql_error());
-	}
-?>
 
 <html>
     <head>
         <title>Wish Store</title>
         <link rel="stylesheet" type="text/css" href="stylesheets/script.css">
+        
+<script src="jquery-1.8.0.js" ></script>  
+  <script>
+            
+     $(document).ready(function(){ 
+		
+	       $("#check").on('click',function(){
+
+		    var a=$("#nameTF").val();
+                    var b=$("#passwordTF").val(); 
+                     
+                    if( a == "" || b == "" ){
+                        $("#error").html(" * Fill All Data");
+                    }else{
+                        $("#error").html(" ");       
+                       check();
+                   } 
+                });
+
+		function check(){
+
+                    var x=$("#nameTF").val();
+                    var y=$("#passwordTF").val();
+                    $.ajax({			
+                        url:"check.php",
+                        type: 'POST',
+			            dataType: 'json',
+                        data:{
+                            user:x,
+			    pass:y,
+                        },
+			
+                        success:function(resp){
+                            
+                       
+                           if(resp=='true'){
+                             alert("true");
+                         }else{$("#error").html(""+resp+""); }
+                        },
+                        error:function(){
+                            alert("Error");
+                        }
+                    });
+      
+      
+      
+                }
+
+          });
+        </script>
     </head>
     <body class="free">
     	<div class="container">
@@ -40,12 +79,12 @@
               <tr>
                 <td height="43">&nbsp;</td>
                 <td>
-                  <input type="submit" name="submit" id="button" value="Login">
+                  <input type="button" name="submit" id="check" value="Login">
                 </td>
               </tr>
               <tr>
                 <td height="35" colspan="2" id="errorLabel"><h4><strong>
-                  <label>*error</label>
+                  <label id="error">*error</label>
                 </strong></h4></td>
               </tr>
               <tr></tr>
